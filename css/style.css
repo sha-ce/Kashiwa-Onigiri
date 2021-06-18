@@ -315,7 +315,8 @@ section h2 span {
     margin-bottom: 100px;
     background-color: ghostwhite;
     overflow: hidden;
-    font-size: 150%;
+    font-size: 120%;
+    font-family: 'Modern Antiqua', 'Noto Sans JP', serif;
 }
 
 .box {
