@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="最新技術と自然との調和を目指す">
+	<meta name="viewport" content="width=device-width">
+	<title>sns_test</title>
+	<link rel="stylesheet" media="all" href="css/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script src="js/script.js"></script>
+    <script src="js/sign.js"></script>
+</head>
+
+<body id="top">
+	<header>
+		<div id="head">
+			<h1>● test sns</h1>
+			<button id="sbtnre" type="submit" onclick="getContent()"><i class="fas fa-redo"></i></button>
+			<form id="form" action="" method="get">
+        		<input id="sbox" type="text" name="s" placeholder="  key word"/>
+        		<button id="sbtn" type="submit"><i class="fas fa-search"></i></button>
+        	</form>
+		</div>
+	</header>
+	<div id="wrapper">
+		<div id="sidebar">
+			<div id="sidebarWrap">
+				<h1><img src="images/logo.png" width="87" height="25" alt="logo"></h1>
+				<nav id="mainnav">
+					<p id="menuWrap"><a id="menu"><span id="menuBtn"></span></a></p>
+					<button id="sbtnrephone" type="submit"><i class="fas fa-redo"></i></button>
+					<div class="panel">
+						<ul>
+							<li><a href="./index.html">Home</a></li>
+							<li><a href="#sec01">Notification</a></li>
+							<li><a href="#sec02">profile</a></li>
+							<li><a href="#sec03">setting</a></li>
+							<li><a href="./sign.html">sign in/up</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<div id="content">
+			<section id="sec01">
+				<header>
+					<h2><span>sign up</span></h2>
+				</header>
+				<div id="information">
+					<p>User Name</p>
+					<input class="box" id="name" type="text" name="name" placeholder="user name"></br>
+					<p>Email Address</p>
+					<input class="box" id="email" type="text" name="email" placeholder="email address"></br>
+					<p>Password</p>
+					<input class="box" id="password" type="text" name="password" placeholder="password"></br>
+					<button class="button" type="submit" onclick="postSignUp()">sign up</button>
+				</div>
+				<header>
+                	<h2><span>sign in</span></h2>
+				</header>
+				<div id="information">
+					<p>Email Address</p>
+					<input class="box" id="emailin" type="text" name="Email" placeholder="email address"></br>
+					<p>Password</p>
+					<input class="box" id="passwordin" type="text" name="Password" placeholder="password"></br>
+					<button class="button" type="submit" onclick="postSignIn()">sign in</button>
+				</div>
+			</section>
+		</div>
+		<div class="left">
+		</div>
+
+		
+	</div>
+
+</body>
+</html>
