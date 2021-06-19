@@ -110,6 +110,11 @@ function postSignIn() {
         });
 }
 
+function signOut() {
+    localStorage.setItem('token', '');
+    document.getElementById('signout').innerHTML = '';
+}
+
 function postContent() {
     let mycoment = document.getElementById('coment').value;
     if (mycoment == "") {

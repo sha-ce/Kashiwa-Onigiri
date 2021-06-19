@@ -682,7 +682,7 @@ section h2 span {
         border: 0;
     }
     #head {
-        height: 0;
+        display: none;
     }
     #sbox {
         height: 0;
