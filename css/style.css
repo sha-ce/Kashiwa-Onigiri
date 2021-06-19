@@ -447,6 +447,10 @@ section h2 span {
         left: 80%;
         position: fixed;
     }
+    .left1 {
+        width: 20%;
+        background-color: ghostwhite;
+    }
     .left {
         width: 20%;
         background-color: ghostwhite;
