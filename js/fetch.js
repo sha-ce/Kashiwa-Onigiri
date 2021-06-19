@@ -49,6 +49,9 @@ function postSignUp() {
     let usermail = document.getElementById('email').value;
     let userpass = document.getElementById('password').value;
     let userdes = "よろしくお願いします。";
+    if (username == '' || usermail == '' || userpass == '') {
+        return console.log("error: please write your imformation.")
+    }
     let userup = {
         "name": username,
         "email": usermail,
@@ -73,8 +76,6 @@ function postSignUp() {
         });
 }
 
-let token;
-
 function postSignIn() {
     let userinmail = document.getElementById('emailin').value;
     let userinpass = document.getElementById('passwordin').value;
@@ -95,23 +96,30 @@ function postSignIn() {
         })
         .then(res => {
             console.log(res);
-            token = 'Bearer ' + res['jwt'];
-            console.log(token);
+            if (res['jwt'] == undefined) {
+                return console.log('error: user not found');
+            }
+            let jwt = 'Bearer ' + res['jwt'];
+            localStorage.setItem('token', jwt);
+            console.log(jwt);
+            location.href = "./index.html";
         })
         .catch(error => {
             console.log(error);
         });
-    getContent();
-    location.href = "./index.html";
 }
 
 function postContent() {
     let mycoment = document.getElementById('coment').value;
+    if (mycoment == "") {
+        return console.log("error: please wirte a coment.");
+    }
 
     let param = {
         "thread_key": threadKey,
         "content": mycoment
     }
+    let token = localStorage.getItem('token');
     fetch('https://t9f823.deta.dev/api/v1/posts', {
             method: 'POST',
             headers: {
@@ -125,6 +133,7 @@ function postContent() {
         })
         .then(res => {
             console.log(res);
+            location.href = "./index.html";
         })
         .catch(error => {
             console.log(error);

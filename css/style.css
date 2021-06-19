@@ -122,17 +122,6 @@ input:focus {
 }
 
 
-/* フッター
-------------------------------------------------------------*/
-
-#footer {
-    clear: both;
-    padding: 50px 10px 50px 0;
-    text-align: center;
-    font-size: 12px;
-}
-
-
 /* 共通
 ------------------------------------------------------------*/
 
@@ -386,7 +375,7 @@ section h2 span {
         padding-right: 40px;
         left: 0;
         top: 0;
-        border-radius: 2px;
+        border-radius: 10px;
         outline: 0;
         background: #eee;
     }
@@ -452,9 +441,36 @@ section h2 span {
     #sns a:hover img {
         opacity: .8;
     }
+    #footer {
+        width: 20%;
+        top: 20%;
+        left: 80%;
+        position: fixed;
+    }
     .left {
         width: 20%;
         background-color: ghostwhite;
+    }
+    #toukou {
+        padding: 10px 10px 50px 10px;
+        margin: 10% 20px 0 0;
+        border: solid 0.5px gray;
+        position: absolute;
+        border-radius: 20px / 20px;
+        background-color: rgb(252, 252, 255);
+    }
+    .coment {
+        background-color: white;
+        border: solid 0.5px gray;
+        padding: 10px 10px 10px 5px;
+        border-radius: 50px / 50px;
+    }
+    .comentbutton {
+        border: solid 1px lightgray;
+        border-radius: 50px / 50px;
+        background-color: rgb(219, 219, 255);
+        font-size: 20px;
+        color: white;
     }
     /* SEC03 BRAND
 	-----------------*/
@@ -470,9 +486,6 @@ section h2 span {
     }
     #map iframe {
         height: 200px !important;
-    }
-    #footer {
-        padding: 30px 10px 70px 0;
     }
 }
 
@@ -519,7 +532,7 @@ section h2 span {
         position: fixed;
         left: 0;
         top: 0;
-        border-radius: 2px;
+        border-radius: 10px;
         outline: 0;
         background: #eee;
     }
@@ -674,7 +687,7 @@ section h2 span {
         position: fixed;
         left: 0;
         top: 0;
-        border-radius: 2px;
+        border-radius: 10px;
         outline: 0;
         background: #eee;
     }
@@ -714,7 +727,7 @@ section h2 span {
         max-width: 80%;
         padding: 0;
         display: block;
-        margin: 30px auto 30px auto;
+        margin: 30px auto 50px auto;
         background-color: ghostwhite;
         overflow: hidden;
         font-size: 100%;
@@ -726,5 +739,47 @@ section h2 span {
     }
     section h2 {
         margin: 55px auto;
+    }
+    #footer {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+    }
+    #footer {
+        clear: both;
+        padding: 50px 10px 50px 0;
+        text-align: center;
+        font-size: 12px;
+    }
+    .left {
+        position: absolute;
+        width: 100%;
+        height: 50px;
+        background: #fff;
+        border-bottom: 1px solid #ccc;
+        border: solid 0.5px gray;
+    }
+    #toukou {
+        width: 50%;
+        padding: 0px 30px 20px 25px;
+        margin: 7px 5% 10px auto;
+        display: block;
+        border-radius: 20px / 20px;
+        background-color: white;
+    }
+    .coment {
+        background-color: white;
+        border: solid 0.5px gray;
+        padding: 10px 10px 10px 5px;
+        margin-bottom: 10px;
+        border-radius: 50px / 50px;
+    }
+    .comentbutton {
+        border: solid 1px lightgray;
+        border-radius: 50px / 50px;
+        background-color: rgb(219, 219, 255);
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: white;
     }
 }
