@@ -70,6 +70,7 @@ function postSignUp() {
         })
         .then(res1 => {
             console.log(res1);
+            location.href = "./sign.html";
         })
         .catch(error => {
             console.log(error);
