@@ -1,7 +1,4 @@
-const block = "block";
-const blocktext = "block-text";
-const namae = "name";
-const text = "text";
+let threadKey = 'xx8syv6jiea8'; //defo
 
 function getThread() {
     fetch('https://t9f823.deta.dev/api/v1/threads')
@@ -10,23 +7,58 @@ function getThread() {
         })
         .then(res => {
             console.log(res);
-            const data = res;
-            let length = data.length;
-            for (let i = length - 1; i >= 0; i--) {
-                HTMLtext += "<div class=" + block + ">\n" + "<div class=" + blocktext + ">\n" + "<div class=" + namae + "><h5>" + data[i]["author"]["name"] + "</h5></div>\n" + "<div class=" + text + ">\n" + "<p>" + data[i]["name"] + "</p>\n" + "</div>\n</div>\n</div>";;
-            }
-            document.getElementById('threadscontainer').innerHTML = HTMLtext;
+            threadKey = res[1]['key'];
+            console.log(threadKey);
         })
         .catch(error => {
             console.log(error);
         });
 }
 
-let threadKey = 'xx8syv6jiea8';
+//仮
+function postThread() {
+    let mycoment = document.getElementById('coment').value;
+    if (mycoment == "") {
+        return console.log("error: please wirte a coment");
+    }
+
+    let param = {
+        "thread_key": threadKey,
+        "content": mycoment
+    }
+    let token = localStorage.getItem('token');
+    if (token == '') {
+        return console.log('error: please sign in');
+    }
+    fetch('https://t9f823.deta.dev/api/v1/posts', {
+            method: 'POST',
+            headers: {
+                'jwt-token': token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(param)
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(res => {
+            console.log(res);
+            if (res)
+                location.href = "./index.html";
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+const block = "block";
+const blocktext = "block-text";
+const namae = "name";
+const text = "text";
 
 window.onload = function getContent() {
     let HTMLtext = "";
-    fetch('https://t9f823.deta.dev/api/v1/threads/' + threadKey + '/posts?limit=50&page=1')
+    fetch('https://t9f823.deta.dev/api/v1/threads/' + threadKey + '/posts?limit=30&page=1')
         .then(response => {
             return response.json();
         })
@@ -34,7 +66,7 @@ window.onload = function getContent() {
             console.log(res);
             const data = res;
             let length = data.length;
-            for (let i = length - 1; i >= 0; i--) {
+            for (let i = 0; i < length; i++) {
                 HTMLtext += "<div class=" + block + ">\n" + "<div class=" + blocktext + ">\n" + "<div class=" + namae + "><h5>" + data[i]["author"]["name"] + "</h5></div>\n" + "<div class=" + text + ">\n" + "<p>" + data[i]["content"] + "</p>\n" + "</div>\n</div>\n</div>";;
             }
             document.getElementById('threadscontainer').innerHTML = HTMLtext;
@@ -50,7 +82,7 @@ function postSignUp() {
     let userpass = document.getElementById('password').value;
     let userdes = "よろしくお願いします。";
     if (username == '' || usermail == '' || userpass == '') {
-        return console.log("error: please write your imformation.")
+        return console.log("error: please write your imformation")
     }
     let userup = {
         "name": username,
@@ -112,13 +144,14 @@ function postSignIn() {
 
 function signOut() {
     localStorage.setItem('token', '');
+    console.log("deketa!!");
     document.getElementById('signout').innerHTML = '';
 }
 
 function postContent() {
     let mycoment = document.getElementById('coment').value;
     if (mycoment == "") {
-        return console.log("error: please wirte a coment.");
+        return console.log("error: please wirte a coment");
     }
 
     let param = {
@@ -126,6 +159,9 @@ function postContent() {
         "content": mycoment
     }
     let token = localStorage.getItem('token');
+    if (token == '') {
+        return console.log('error: please sign in');
+    }
     fetch('https://t9f823.deta.dev/api/v1/posts', {
             method: 'POST',
             headers: {
@@ -139,7 +175,8 @@ function postContent() {
         })
         .then(res => {
             console.log(res);
-            location.href = "./index.html";
+            if (res)
+                location.href = "./index.html";
         })
         .catch(error => {
             console.log(error);

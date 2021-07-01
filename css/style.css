@@ -141,7 +141,7 @@ section {
 
 section h2 {
     width: 100%;
-    margin: 70px auto;
+    margin: 10px auto;
     font-size: 22px;
     font-weight: normal;
     text-align: center;
@@ -174,12 +174,13 @@ section h2 span {
 }
 
 .block {
-    border: solid 0.5px gray;
+    border: solid 0.5px lightgray;
     background-color: white;
     margin: 0 0 10px 0;
     padding-top: 10px;
     max-width: 100%;
     display: flex;
+    border-radius: 5px/5px;
 }
 
 .name {
@@ -189,13 +190,13 @@ section h2 span {
 }
 
 .data {
-    font: lightgray;
+    color: gray;
     font-size: 80%;
     position: static;
 }
 
 .text {
-    font: lightgray;
+    color: rgb(100, 100, 100);
     margin: 10px;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -299,18 +300,19 @@ section h2 span {
     border: solid 1px gray;
     max-width: fit-content;
     padding: 20px 60px 30px 60px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 100px;
+    margin: 30px auto 30px auto;
     background-color: rgb(250, 250, 255);
     overflow: hidden;
     font-size: 120%;
     font-family: 'Modern Antiqua', 'Noto Sans JP', serif;
+    border-radius: 5px/5px;
 }
 
 .box {
     padding: 7px 10px 5px 5px;
     margin-bottom: 20px;
+    border-radius: 5px/5px;
+    border: solid 1px lightgray;
 }
 
 .button {
@@ -320,7 +322,14 @@ section h2 span {
     margin-left: auto;
     padding: 10px;
     background-color: rgb(240, 240, 255);
-    border: solid 1.8px gray;
+    border-radius: 10px/10px;
+    color: gray;
+    text-decoration: none;
+    border: solid 0.5px lightgray;
+}
+
+.button:hover {
+    background-color: white;
 }
 
 
@@ -335,11 +344,15 @@ section h2 span {
         background: white;
         width: 100%;
         height: 50px;
-        border-bottom: 1px solid gray;
+        border-bottom: 1px solid lightgray;
         margin: auto;
         padding: auto;
         position: fixed;
         font-stretch: wider;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     #sbtnre {
         height: 0px;
@@ -401,7 +414,7 @@ section h2 span {
         background: ghostwhite;
     }
     #threadscontainer {
-        max-width: 50%;
+        max-width: 70%;
         padding: 0;
         display: block;
         margin: 30px auto 30px auto;
@@ -427,6 +440,9 @@ section h2 span {
     #sidebar h1 {
         padding: 30px 0;
     }
+    .sidetitle {
+        display: none;
+    }
     #mainnav li {
         font-size: 14px;
         padding: 10px 0;
@@ -451,30 +467,45 @@ section h2 span {
         width: 20%;
         background-color: ghostwhite;
     }
-    .left {
-        width: 20%;
-        background-color: ghostwhite;
-    }
     #toukou {
-        padding: 10px 10px 50px 10px;
-        margin: 10% 20px 0 0;
-        border: solid 0.5px gray;
-        position: absolute;
-        border-radius: 20px / 20px;
-        background-color: rgb(252, 252, 255);
+        width: 70%;
+        border: solid 0.5px lightgray;
+        background-color: ghostwhite;
+        margin: 30px auto 10px auto;
+        padding: 5px 5px 1px 5px;
+        max-width: 100%;
+        display: flex;
+        border-radius: 5px / 5px;
+        flex-direction: column;
     }
-    .coment {
+    .sroundComent {
+        width: 100%;
+        height: 30px;
         background-color: white;
-        border: solid 0.5px gray;
-        padding: 10px 10px 10px 5px;
-        border-radius: 50px / 50px;
+        border: solid 0.5px lightgray;
+        padding: 2px 0px 50px 0px;
+        border-radius: 5px / 5px;
     }
-    .comentbutton {
-        border: solid 1px lightgray;
-        border-radius: 50px / 50px;
-        background-color: rgb(219, 219, 255);
-        font-size: 20px;
-        color: white;
+    #coment {
+        width: 95%;
+        height: 100%;
+        background-color: white;
+        padding: 10px 0px 30px 15px;
+        color: black;
+        border: white;
+    }
+    .flex {
+        width: 100%;
+    }
+    .underComment {
+        color: lightgray;
+        overflow-wrap: break-word;
+        right: 0%;
+    }
+    #threadsbox {
+        padding: 10px 10px 50px 10px;
+        margin: 70% 20px 0 0;
+        position: absolute;
     }
     /* SEC03 BRAND
 	-----------------*/
@@ -572,9 +603,13 @@ section h2 span {
         text-align: center;
         padding-top: 15px;
     }
-    #sidebar h1 img {
+    .sidetitle {
         width: auto !important;
         max-height: 25px;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
     }
     a#menu {
         display: inline-block;
@@ -728,7 +763,7 @@ section h2 span {
         background-color: ghostwhite;
     }
     #threadscontainer {
-        max-width: 80%;
+        width: 90%;
         padding: 0;
         display: block;
         margin: 30px auto 50px auto;
@@ -764,26 +799,42 @@ section h2 span {
         border: solid 0.5px gray;
     }
     #toukou {
-        width: 60%;
+        width: 90%;
+        border: solid 0.5px lightgray;
+        background-color: ghostwhite;
+        margin: 30px auto 10px auto;
+        padding: 5px 5px 1px 5px;
+        max-width: 100%;
+        display: flex;
+        border-radius: 5px / 5px;
+        flex-direction: column;
+    }
+    .sroundComent {
+        width: 100%;
+        height: 30px;
+        background-color: white;
+        border: solid 0.5px lightgray;
+        padding: 2px 0px 50px 0px;
+        border-radius: 5px / 5px;
+    }
+    #coment {
+        width: 95%;
+        height: 100%;
+        background-color: white;
+        padding: 10px 0px 30px 15px;
+        color: black;
+        border: white;
+    }
+    .flex {
+        width: 100%;
+    }
+    .underComment {
+        color: lightgray;
+        overflow-wrap: break-word;
+        right: 0%;
+    }
+    #threadsbox {
         padding: 0px 30px 20px 25px;
-        margin: 7px 5% 10px auto;
         display: block;
-        border-radius: 20px / 20px;
-        background-color: white;
-    }
-    .coment {
-        background-color: white;
-        border: solid 0.5px gray;
-        padding: 10px 10px 10px 5px;
-        margin-bottom: 10px;
-        border-radius: 50px / 50px;
-    }
-    .comentbutton {
-        border: solid 1px lightgray;
-        border-radius: 80px / 80px;
-        background-color: rgb(219, 219, 255);
-        font-size: 15px;
-        margin-bottom: 10px;
-        color: white;
     }
 }

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="description" content="最新技術と自然との調和を目指す">
 	<meta name="viewport" content="width=device-width">
-	<title>sns_test</title>
+	<title>Kashiwa Onigiri</title>
 	<link rel="stylesheet" media="all" href="css/style.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
@@ -15,26 +15,27 @@
 <body id="top">
 	<header>
 		<div id="head">
-			<h1>test sns</h1>
-			<form id="form" action="" method="get">
+			<h1>🍙Kashiwa Onigiri</h1>
+			<!--<form id="form" action="" method="get">
         		<input id="sbox" type="text" name="s" placeholder="  key word"/>
         		<button id="sbtn" type="submit"><i class="fas fa-search"></i></button>
-        	</form>
+        	</form>-->
 		</div>
 	</header>
 	<div id="wrapper">
 		<div id="sidebar">
 			<div id="sidebarWrap">
-				<h1><img src="images/logo.png" width="87" height="25" alt="logo"></h1>
+				<div class="sidetitle"><h1>🍙Kashiwa Onigiri</h1></div>
 				<nav id="mainnav">
 					<p id="menuWrap"><a id="menu"><span id="menuBtn"></span></a></p>
 					<div class="panel">
 						<ul>
 							<li><a href="./index.html">Home</a></li>
-							<li><a href="#content">top</a></li>
+							<li><a href="./threads.html">threads</a></li>
 							<li><a href="#sec02">profile</a></li>
 							<li><a href="#sec03">setting</a></li>
-							<li><a href="./sign.html">sign in/up</a></li>
+							<li><a href="./sign.html">sign up/in</a></li>
+							<div id="signout"><li><a href="javascript:signOut();">sign out</a></li></div>
 						</ul>
 					</div>
 				</nav>
@@ -42,6 +43,15 @@
 		</div>
 		<div id="content">
 			<section id="sec01">
+				<h2><span>Comment</span></h2>
+				<div id="toukou">
+					<div class="sroundComent">
+						<form method="post" action="" onsubmit="postContent()" id="form1">
+							<input class="coment" id="coment" type="text" placeholder="コメントを投稿する">
+						</form>
+					</div>
+					<div class="flex"><div class="underComment"><p>Shift + Enterで送信</p></div></div>
+				</div>
 				<header>
 					<h2><span>TimeLine</span></h2>
 				</header>
@@ -51,12 +61,7 @@
 			</section>
 		</div>
 		<div id="footer">
-			<div class="left">
-				<div id="toukou">
-					<input class="coment" id="coment" type="text" placeholder="コメントを投稿する">
-					<button class="comentbutton" type="submit" onclick="postContent()"><i class="far fa-paper-plane"></i></button>
-				</div>
-			</div>
+				
 		</div>
 
 		

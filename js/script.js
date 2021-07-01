@@ -37,4 +37,11 @@ $(function() {
             $('#menuBtn').removeClass('close');
         });
 
+    $('#Coment').keydown(function(e) {
+        if (e.keyCode === 13 && e.shiftKey) { // When "Shift + Enter"
+            return postContent();
+        } else {
+            e.preventDefault();
+        }
+    });
 });
