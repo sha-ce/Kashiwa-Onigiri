@@ -1,18 +1,29 @@
 let threadKey = 'xx8syv6jiea8'; //defo
 
 function getThread() {
-    fetch('https://t9f823.deta.dev/api/v1/threads')
+    threadText = '';
+    fetch('https://t9f823.deta.dev/api/v1/threads?limit=30&page=1')
         .then(response => {
             return response.json();
         })
         .then(res => {
             console.log(res);
-            threadKey = res[1]['key'];
-            console.log(threadKey);
+            const threadData = res;
+            let threadLength = threadData.length;
+            for (let i = 0; i < threadLength; i++) {
+                threadText += '<button type="button" onclick="getKey()" class="threadsBox"><div class="name">' + threadData[i]['author']['name'] + '</div><div class="threadname">' + threadData[i]['name'] + '</button>';
+            }
+            document.getElementById('threads').innerHTML = threadText;
+            loader.classList.add('loaded');
         })
         .catch(error => {
             console.log(error);
         });
+}
+
+function getKey() {
+    threadKey = 'xx8syv6jiea8';
+    return threadKey;
 }
 
 //仮
@@ -51,12 +62,8 @@ function postThread() {
         });
 }
 
-const block = "block";
-const blocktext = "block-text";
-const namae = "name";
-const text = "text";
-
-window.onload = function getContent() {
+function getContent() {
+    var threadKey = getKey();
     let HTMLtext = "";
     fetch('https://t9f823.deta.dev/api/v1/threads/' + threadKey + '/posts?limit=30&page=1')
         .then(response => {
@@ -67,9 +74,10 @@ window.onload = function getContent() {
             const data = res;
             let length = data.length;
             for (let i = 0; i < length; i++) {
-                HTMLtext += "<div class=" + block + ">\n" + "<div class=" + blocktext + ">\n" + "<div class=" + namae + "><h5>" + data[i]["author"]["name"] + "</h5></div>\n" + "<div class=" + text + ">\n" + "<p>" + data[i]["content"] + "</p>\n" + "</div>\n</div>\n</div>";;
+                HTMLtext += '<div class="block">\n' + '<div class="block-text">\n' + '<div class="name"><h5>' + data[i]["author"]["name"] + '</h5></div>\n' + '<div class="text">\n' + '<p>' + data[i]["content"] + '</p>\n' + '<button type="button" onclick="click()" id="heart"><i class="far fa-heart"></i></button>' + '</div>\n</div>\n</div>';
             }
             document.getElementById('threadscontainer').innerHTML = HTMLtext;
+            loader.classList.add('loaded');
         })
         .catch(error => {
             console.log(error);
@@ -90,6 +98,7 @@ function postSignUp() {
         "password": userpass,
         "description": userdes
     }
+    textSignUp();
     fetch('https://t9f823.deta.dev/api/v1/auth/signup', {
             method: 'POST',
             headers: {
@@ -181,4 +190,17 @@ function postContent() {
         .catch(error => {
             console.log(error);
         });
+}
+
+function textSignIn() {
+    document.getElementById('loader').style.display = 'none';
+    let signInText = "";
+    document.getElementById('imformation2').innerHTML = signInText;
+    loader.classList.add('loaded');
+}
+
+function textSignUp() {
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('information1').innerHTML = signUpText;
+    loader.classList.add('loaded');
 }

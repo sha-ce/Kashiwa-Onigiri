@@ -37,11 +37,29 @@ $(function() {
             $('#menuBtn').removeClass('close');
         });
 
-    $('#Coment').keydown(function(e) {
-        if (e.keyCode === 13 && e.shiftKey) { // When "Shift + Enter"
-            return postContent();
-        } else {
-            e.preventDefault();
+    //click
+    function click() {
+        const heart = document.getElementById('heart');
+        heart.classList.add('onHeart');
+    }
+
+    //enter + shift
+    let textForm = document.getElementById('coment');
+    let outPut = document.getElementById('output');
+    document.addEventListener('keypress', events);
+
+    function events(e) {
+        if (e.keyCode === 13 && e.shiftKey === true) {
+            const loader = document.getElementById('loader');
+            postContent();
         }
-    });
+        return false;
+    }
+
+    //loading
+    window.onload = function loading() {
+        const loader = document.getElementById('loader');
+        getContent();
+        getThread();
+    }
 });

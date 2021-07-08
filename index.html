@@ -31,9 +31,7 @@
 					<div class="panel">
 						<ul>
 							<li><a href="./index.html">Home</a></li>
-							<li><a href="./threads.html">threads</a></li>
-							<li><a href="#sec02">profile</a></li>
-							<li><a href="#sec03">setting</a></li>
+							<li><a href="./threads.html" onclick="getThread()">threads</a></li>
 							<li><a href="./sign.html">sign up/in</a></li>
 							<div id="signout"><li><a href="javascript:signOut();">sign out</a></li></div>
 						</ul>
@@ -46,15 +44,27 @@
 				<h2><span>Comment</span></h2>
 				<div id="toukou">
 					<div class="sroundComent">
-						<form method="post" action="" onsubmit="postContent()" id="form1">
 							<input class="coment" id="coment" type="text" placeholder="コメントを投稿する">
-						</form>
 					</div>
 					<div class="flex"><div class="underComment"><p>Shift + Enterで送信</p></div></div>
 				</div>
 				<header>
 					<h2><span>TimeLine</span></h2>
 				</header>
+					<div id="loader" class="sk-fading-circle">
+						<div class="sk-circle1 sk-circle"></div>
+						<div class="sk-circle2 sk-circle"></div>
+						<div class="sk-circle3 sk-circle"></div>
+						<div class="sk-circle4 sk-circle"></div>
+						<div class="sk-circle5 sk-circle"></div>
+						<div class="sk-circle6 sk-circle"></div>
+						<div class="sk-circle7 sk-circle"></div>
+						<div class="sk-circle8 sk-circle"></div>
+						<div class="sk-circle9 sk-circle"></div>
+						<div class="sk-circle10 sk-circle"></div>
+						<div class="sk-circle11 sk-circle"></div>
+						<div class="sk-circle12 sk-circle"></div>
+					</div>
 				<div id="threadscontainer">
 				<!--threads-->
 				</div>
