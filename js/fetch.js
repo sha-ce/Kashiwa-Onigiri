@@ -1,5 +1,3 @@
-localStorage.setItem('thKey', 'xx8syv6jiea8'); //defo
-
 function getThread() {
     threadText = '';
     fetch('https://t9f823.deta.dev/api/v1/threads?limit=100&page=1')
