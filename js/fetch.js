@@ -1,4 +1,4 @@
-var threadKey = 'xx8syv6jiea8'; //defo
+localStorage.setItem('thKey', 'xx8syv6jiea8'); //defo
 
 function getThread() {
     threadText = '';
