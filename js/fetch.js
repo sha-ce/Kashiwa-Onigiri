@@ -98,7 +98,6 @@ function postSignUp() {
         "password": userpass,
         "description": userdes
     }
-    textSignUp();
     fetch('https://t9f823.deta.dev/api/v1/auth/signup', {
             method: 'POST',
             headers: {
@@ -192,15 +191,15 @@ function postContent() {
         });
 }
 
-function textSignIn() {
-    document.getElementById('loader').style.display = 'none';
-    let signInText = "";
-    document.getElementById('imformation2').innerHTML = signInText;
-    loader.classList.add('loaded');
-}
+// function textSignIn() {
+//     document.getElementById('loader').style.display = 'none';
+//     let signInText = "";
+//     document.getElementById('imformation2').innerHTML = signInText;
+//     loader.classList.add('loaded');
+// }
 
-function textSignUp() {
-    document.getElementById('loader').style.display = 'none';
-    document.getElementById('information1').innerHTML = signUpText;
-    loader.classList.add('loaded');
-}
+// function textSignUp() {
+//     document.getElementById('loader').style.display = 'none';
+//     document.getElementById('information1').innerHTML = signUpText;
+//     loader.classList.add('loaded');
+// }
