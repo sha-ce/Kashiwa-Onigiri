@@ -1,8 +1,8 @@
-let threadKey = 'xx8syv6jiea8'; //defo
+var threadKey = 'xx8syv6jiea8'; //defo
 
 function getThread() {
     threadText = '';
-    fetch('https://t9f823.deta.dev/api/v1/threads?limit=30&page=1')
+    fetch('https://t9f823.deta.dev/api/v1/threads?limit=100&page=1')
         .then(response => {
             return response.json();
         })
@@ -11,7 +11,7 @@ function getThread() {
             const threadData = res;
             let threadLength = threadData.length;
             for (let i = 0; i < threadLength; i++) {
-                threadText += '<button type="button" onclick="getKey()" class="threadsBox"><div class="name">' + threadData[i]['author']['name'] + '</div><div class="threadname">' + threadData[i]['name'] + '</button>';
+                threadText += '<button type="button" onclick="getKey('+i+')" class="threadsBox"><div class="name">' + threadData[i]['author']['name'] + '</div><div class="threadname">' + threadData[i]['name'] + '</button>';
             }
             document.getElementById('threads').innerHTML = threadText;
             loader.classList.add('loaded');
@@ -20,10 +20,22 @@ function getThread() {
             console.log(error);
         });
 }
-
-function getKey() {
-    threadKey = 'xx8syv6jiea8';
-    return threadKey;
+var newthreadKey;
+function getKey(i) {
+    fetch("https://t9f823.deta.dev/api/v1/threads?limit=100&page=1")
+      .then((response) => {
+        return response.json();
+      })
+      .then((res) => {
+        console.log(res);
+        newthreadKey = res[i]['key'];
+        console.log(res[i]['key']);
+        localStorage.setItem('thKey', newthreadKey);
+        location.href = "./index.html";
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 }
 
 //仮
@@ -33,8 +45,9 @@ function postThread() {
         return console.log("error: please wirte a coment");
     }
 
+    newthreadKey = localStorage.getItem('thKey');
     let param = {
-        "thread_key": threadKey,
+        "thread_key": newthreadKey,
         "content": mycoment
     }
     let token = localStorage.getItem('token');
@@ -63,9 +76,9 @@ function postThread() {
 }
 
 function getContent() {
-    var threadKey = getKey();
+    newthreadKey = localStorage.getItem('thKey');
     let HTMLtext = "";
-    fetch('https://t9f823.deta.dev/api/v1/threads/' + threadKey + '/posts?limit=30&page=1')
+    fetch('https://t9f823.deta.dev/api/v1/threads/' + newthreadKey + '/posts?limit=50&page=1')
         .then(response => {
             return response.json();
         })
@@ -162,8 +175,9 @@ function postContent() {
         return console.log("error: please wirte a coment");
     }
 
+    newthreadKey = localStorage.getItem("thKey");
     let param = {
-        "thread_key": threadKey,
+        "thread_key": newthreadKey,
         "content": mycoment
     }
     let token = localStorage.getItem('token');

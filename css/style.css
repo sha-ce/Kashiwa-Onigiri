@@ -549,7 +549,7 @@ section h2 span {
 /* RESPONSIVE 設定
 ------------------------------------------------------------*/
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
     body {
         font-size: 14px;
     }
