@@ -56,4 +56,23 @@ $(function() {
         getThread();
     }
 });
+//click
+function heartClick(n) {
+    heart = document.getElementById("heart"+n).innerHTML;
+    onheart = '<i class="fas fa-heart"></i>';
+    offheart = '<i class="far fa-heart"></i>';
+    if(heart == onheart) {
+        document.getElementById("heart"+n).innerHTML = offheart;
+        console.log("iine???");
+    } else if(heart == offheart) {
+        document.getElementById("heart"+n).innerHTML = onheart;
+        console.log("iine!!!");
+    }
+}
 
+//コメント
+function aroundchange() {
+    console.log(document.getElementById('toukou').innerHTML);
+    document.getElementById("toukou").innerHTML = '<div class="sroundComent2"><input class="coment" id="coment" type="text" autocomplete="off" onclick="aroundchange()" placeholder="コメントを投稿する"></div><div class="flex"><div class="underComment"><p>Shift + Enterで送信</p></div></div>';
+    return 0;
+}

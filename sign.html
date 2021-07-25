@@ -46,10 +46,10 @@
 				</header>
 				<div id="information1">
 					<p>Email Address</p>
-					<input class="box" id="emailin" type="text" name="Email" placeholder="email address"></br>
+					<input class="box" id="emailin" type="text" name="Email" autocomplete="off" placeholder="email address"></br>
 					<p>Password</p>
-					<input class="box" id="passwordin" type="text" name="Password" placeholder="password"></br>
-						<button class="button" type="submit" onclick="postSignIn()">
+					<input class="box" id="passwordin" type="password" name="Password" placeholder="password"></br>
+						<button class="button" type="submit" onclick="postSignIn()" id="signinbutton">
 							<p>sign in</p>
 						</button>
 					<div id="signinerror"></div>
@@ -59,12 +59,12 @@
 				</header>
 				<div id="information2">
 					<p>User Name</p>
-					<input class="box" id="name" type="text" name="name" placeholder="user name"></br>
+					<input class="box" id="name" type="text" name="name" autocomplete="off" placeholder="user name"></br>
 					<p>Email Address</p>
-					<input class="box" id="email" type="text" name="email" placeholder="email address"></br>
+					<input class="box" id="email" type="text" name="email" autocomplete="off" placeholder="email address"></br>
 					<p>Password</p>
-					<input class="box" id="password" type="text" name="password" placeholder="password"></br>
-						<button class="button" type="submit" onclick="postSignUp()">
+					<input class="box" id="password" type="password" name="password" placeholder="password"></br>
+						<button class="button" type="submit" onclick="postSignUp()" id="signupbutton">
 							<p>sign up</p>
 						</button>
 					<div id="signuperror"></div>

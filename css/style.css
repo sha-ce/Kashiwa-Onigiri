@@ -134,10 +134,13 @@ section h2 span {
     box-shadow: 0 1px gray;
     position: relative;
 }
+
 .block:hover {
     background-color: rgb(250, 250, 250);
     box-shadow: 0 2px gray;
+    transition: 0.2s;
 }
+
 .name {
     font-size: 100%;
     font-family: Arial, Helvetica, sans-serif;
@@ -193,6 +196,7 @@ section h2 span {
 .fa-heart:hover {
     color: gray;
     font-size: 120%;
+    transition: 0.2s;
 }
 
 .threadsBox {
@@ -211,6 +215,7 @@ section h2 span {
 .threadsBox:hover {
     background-color: rgb(248, 248, 255);
     box-shadow: 0 2px gray;
+    transition: 0.2s;
 }
 
 /* SEC02 Gallery
@@ -305,6 +310,8 @@ section h2 span {
 
 .button:hover {
     background-color: white;
+    border: solid 0.5px gray;
+    transition: 0.2s;
 }
 
 /* roading */
@@ -333,8 +340,15 @@ section h2 span {
 
 .sk-fading-circle {
     margin: 100px auto;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.small {
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
     position: relative;
 }
 
@@ -350,8 +364,20 @@ section h2 span {
     content: '';
     display: block;
     margin: 0 auto;
-    width: 15%;
-    height: 15%;
+    width: 10%;
+    height: 10%;
+    background-color: #333;
+    border-radius: 100%;
+    -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+    animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+}
+
+.small .sk-circle:before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 5%;
+    height: 5%;
     background-color: #333;
     border-radius: 100%;
     -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
@@ -645,33 +671,36 @@ section h2 span {
         box-shadow: 0 1px rgb(219, 219, 255);
     }
     .sroundComent {
-        width: 100%;
-        height: 30px;
-        background-color: white;
-        border: solid 0.5px lightgray;
-        padding: 2px 0px 50px 0px;
-        border-radius: 5px / 5px;
-        box-shadow: 0 1px rgb(160, 160, 160);
+        height: 90px;
     }
     .errorcomment {
         font-size: 100%;
         font-family: 'Modern Antiqua', 'Noto Sans JP', serif;
     }
     #coment {
-        width: 95%;
-        height: 100%;
+        width: 99%;
+        height: auto;
         background-color: white;
-        padding: 10px 0px 30px 15px;
-        color: black;
-        border: white;
+        border: solid 0.3px lightgray;
+        padding: 10px 0 60px 10px;
+        margin: 0;
+        border-radius: 5px / 5px;
+        box-shadow: 0 1px rgb(160, 160, 160);
+    }
+    #coment::placeholder {
+        text-align: left;
+        vertical-align: top;
+    }
+    #coment:focus {
+        border: solid 0.3px rgb(146, 146, 255);
     }
     .flex {
         width: 100%;
     }
     .underComment {
-        color: lightgray;
+        color: rgb(200, 200, 200);
         overflow-wrap: break-word;
-        right: 0%;
+        text-align: right;
     }
     #threadsbox {
         padding: 10px 10px 50px 10px;
@@ -735,6 +764,9 @@ section h2 span {
         margin-bottom: 20px;
         border-radius: 5px/5px;
         border: solid 1px lightgray;
+    }
+    .box:focus {
+        border: solid 0.5px rgb(146, 146, 255);
     }
     .button {
         margin-bottom: 20px;

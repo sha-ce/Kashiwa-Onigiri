@@ -116,8 +116,8 @@ function postSignUp() {
         return console.log("error: please write your imformation");
     }
 
-    text ='<div id="loader" class="sk-fading-circle"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
-    document.getElementById("information2").innerHTML = text;
+    text ='<div id="loader" class="sk-fading-circle small"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
+    document.getElementById("signupbutton").innerHTML = text;
 
     let userup = {
         "name": username,
@@ -153,8 +153,8 @@ function postSignIn() {
       return console.log("error: please write your imformation");
     }
 
-    text = '<div id="loader" class="sk-fading-circle"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
-    document.getElementById("information1").innerHTML = text;
+    text = '<div id="loader" class="sk-fading-circle small"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
+    document.getElementById("signinbutton").innerHTML = text;
 
     let userin = {
         "email": userinmail,
@@ -173,6 +173,8 @@ function postSignIn() {
         .then(res => {
             console.log(res);
             if (res['jwt'] == undefined) {
+                document.getElementById('signinerror').innerHTML = "error: user not found";
+                document.getElementById('signinbutton').innerHTML = '<p>sign in</p>';
                 return console.log('error: user not found');
             }
             let jwt = 'Bearer ' + res['jwt'];
@@ -194,13 +196,13 @@ function signOut() {
 function postContent() {
     let token = localStorage.getItem("token");
     if (token == "") {
-      document.getElementById("toukou").innerHTML =
+      document.getElementById("comenterror").innerHTML =
         '<div class="errorcomment">error: please sign in</div>';
       return console.log("error: please sign in");
     }
     let mycoment = document.getElementById('coment').value;
     if (mycoment == "") {
-        document.getElementById("toukou").innerHTML = '<div class="errorcomment">error: please write a coment</div>';
+        document.getElementById("comenterror").innerHTML = '<div class="errorcomment">error: please write a coment</div>';
         return console.log("error: please wirte a coment");
     }
     text ='<div id="loader" class="sk-fading-circle"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
@@ -246,16 +248,4 @@ function postContent() {
 //     loader.classList.add('loaded');
 // }
 
-//click
-function heartClick(n) {
-    heart = document.getElementById("heart"+n).innerHTML;
-    onheart = '<i class="fas fa-heart"></i>';
-    offheart = '<i class="far fa-heart"></i>';
-    if(heart == onheart) {
-        document.getElementById("heart"+n).innerHTML = offheart;
-        console.log("iine???");
-    } else if(heart == offheart) {
-        document.getElementById("heart"+n).innerHTML = onheart;
-        console.log("iine!!!");
-    }
-}
+
