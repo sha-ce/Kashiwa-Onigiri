@@ -20,6 +20,9 @@ function getThread() {
 }
 var newthreadKey;
 function getKey(i) {
+    text ='<div id="loader" class="sk-fading-circle"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
+    document.getElementById("threads").innerHTML = text;
+
     fetch("https://t9f823.deta.dev/api/v1/threads?limit=100&page=1")
       .then((response) => {
         return response.json();
@@ -27,8 +30,11 @@ function getKey(i) {
       .then((res) => {
         console.log(res);
         newthreadKey = res[i]['key'];
+        threadname = res[i]['name'];
         console.log(res[i]['key']);
+        console.log(threadname);
         localStorage.setItem('thKey', newthreadKey);
+        localStorage.setItem('threadName', threadname);
         location.href = "./index.html";
       })
       .catch((error) => {
@@ -76,7 +82,7 @@ function postThread() {
 function getContent() {
     newthreadKey = localStorage.getItem('thKey');
     let HTMLtext = "";
-    fetch('https://t9f823.deta.dev/api/v1/threads/' + newthreadKey + '/posts?limit=50&page=1')
+    fetch('https://t9f823.deta.dev/api/v1/threads/' + newthreadKey + '/posts?limit=999&page=1')
         .then(response => {
             return response.json();
         })
@@ -85,10 +91,15 @@ function getContent() {
             const data = res;
             let length = data.length;
             for (let i = 0; i < length; i++) {
-                HTMLtext += '<div class="block">\n' + '<div class="block-text">\n' + '<div class="name"><h5>' + data[i]["author"]["name"] + '</h5></div>\n' + '<div class="text">\n' + '<p>' + data[i]["content"] + '</p>\n' + '<button type="button" onclick="click()" id="heart"><i class="far fa-heart"></i></button>' + '</div>\n</div>\n</div>';
+                HTMLtext += '<div class="block">\n' + '<div class="block-text">\n' + '<div class="name"><h5>' + data[i]["author"]["name"] + '</h5></div>\n' + '<div class="text">\n' + '<p>' + data[i]["content"] + '</p>\n' + '<button type="button" onclick="heartClick('+i+')" class="heart" id="heart'+i+'"><i class="far fa-heart"></i></button>' + '</div>\n</div>\n</div>';
             }
             document.getElementById('threadscontainer').innerHTML = HTMLtext;
             loader.classList.add('loaded');
+            if (localStorage.getItem("threadName") != null) {
+              document.getElementById("threadname").innerHTML =
+                '<p>"' + localStorage.getItem("threadName")
+              +'"</p>';
+            }
         })
         .catch(error => {
             console.log(error);
@@ -99,10 +110,14 @@ function postSignUp() {
     let username = document.getElementById('name').value;
     let usermail = document.getElementById('email').value;
     let userpass = document.getElementById('password').value;
-    let userdes = "よろしくお願いします。";
+    let userdes = "プロフィールを記入してください";
     if (username == '' || usermail == '' || userpass == '') {
         return console.log("error: please write your imformation")
     }
+
+    text ='<div id="loader" class="sk-fading-circle"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
+    document.getElementById("information2").innerHTML = text;
+
     let userup = {
         "name": username,
         "email": usermail,
@@ -129,8 +144,14 @@ function postSignUp() {
 }
 
 function postSignIn() {
-    let userinmail = document.getElementById('emailin').value;
-    let userinpass = document.getElementById('passwordin').value;
+    let userinmail = document.getElementById("emailin").value;
+    let userinpass = document.getElementById("passwordin").value;
+    if (userinmail == "" || userinpass == "") {
+      return console.log("error: please write your imformation");
+    }
+
+    text = '<div id="loader" class="sk-fading-circle"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
+    document.getElementById("information1").innerHTML = text;
 
     let userin = {
         "email": userinmail,
@@ -170,17 +191,22 @@ function signOut() {
 function postContent() {
     let mycoment = document.getElementById('coment').value;
     if (mycoment == "") {
+        document.getElementById("toukou").innerHTML = 'error: please write a coment';
         return console.log("error: please wirte a coment");
     }
+    let token = localStorage.getItem("token");
+    if (token == "") {
+      document.getElementById("toukou").innerHTML = "error: please sign in";
+      return console.log("error: please sign in");
+    }
+    text ='<div id="loader" class="sk-fading-circle"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
+    document.getElementById("toukou").innerHTML = text;
 
-    newthreadKey = localStorage.getItem("thKey");
+    newthreadKey = localStorage.getItem('thKey');
+    threadname = localStorage.getItem('threadName');
     let param = {
         "thread_key": newthreadKey,
         "content": mycoment
-    }
-    let token = localStorage.getItem('token');
-    if (token == '') {
-        return console.log('error: please sign in');
     }
     fetch('https://t9f823.deta.dev/api/v1/posts', {
             method: 'POST',
@@ -215,3 +241,17 @@ function postContent() {
 //     document.getElementById('information1').innerHTML = signUpText;
 //     loader.classList.add('loaded');
 // }
+
+//click
+function heartClick(n) {
+    heart = document.getElementById("heart"+n).innerHTML;
+    onheart = '<i class="fas fa-heart"></i>';
+    offheart = '<i class="far fa-heart"></i>';
+    if(heart == onheart) {
+        document.getElementById("heart"+n).innerHTML = offheart;
+        console.log("iine???");
+    } else if(heart == offheart) {
+        document.getElementById("heart"+n).innerHTML = onheart;
+        console.log("iine!!!");
+    }
+}

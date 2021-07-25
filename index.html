@@ -32,7 +32,7 @@
 						<ul>
 							<li><a href="./index.html">Home</a></li>
 							<li><a href="./threads.html" onclick="getThread()">threads</a></li>
-							<li><a href="./sign.html">sign up/in</a></li>
+							<li><a href="./sign.html">sign in/up</a></li>
 							<div id="signout"><li><a href="javascript:signOut();">sign out</a></li></div>
 						</ul>
 					</div>
@@ -49,7 +49,7 @@
 					<div class="flex"><div class="underComment"><p>Shift + Enterで送信</p></div></div>
 				</div>
 				<header>
-					<h2><span>TimeLine</span></h2>
+					<h2><span>TimeLine<div id="threadname" class="threadnamemin"></div></span></h2>
 				</header>
 					<div id="loader" class="sk-fading-circle">
 						<div class="sk-circle1 sk-circle"></div>
@@ -69,8 +69,6 @@
 				<!--threads-->
 				</div>
 			</section>
-		</div>
-		<div id="footer">
 				
 		</div>
 

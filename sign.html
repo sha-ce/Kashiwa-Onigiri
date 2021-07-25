@@ -32,7 +32,7 @@
 						<ul>
 							<li><a href="./index.html">Home</a></li>
 							<li><a href="./threads.html" onclick="getThread()">threads</a></li>
-							<li><a href="./sign.html">sign up/in</a></li>
+							<li><a href="./sign.html">sign in/up</a></li>
 							<div id="signout"><li><a href="javascript:signOut();">sign out</a></li></div>
 						</ul>
 					</div>
@@ -42,26 +42,30 @@
 		<div id="content">
 			<section id="sec01">
 				<header>
-					<h2><span>sign up</span></h2>
+                	<h2><span>sign in</span></h2>
 				</header>
 				<div id="information1">
+					<p>Email Address</p>
+					<input class="box" id="emailin" type="text" name="Email" placeholder="email address"></br>
+					<p>Password</p>
+					<input class="box" id="passwordin" type="text" name="Password" placeholder="password"></br>
+						<button class="button" type="submit" onclick="postSignIn()">
+							<p>sign in</p>
+						</button>
+				</div>
+				<header>
+					<h2><span>sign up</span></h2>
+				</header>
+				<div id="information2">
 					<p>User Name</p>
 					<input class="box" id="name" type="text" name="name" placeholder="user name"></br>
 					<p>Email Address</p>
 					<input class="box" id="email" type="text" name="email" placeholder="email address"></br>
 					<p>Password</p>
 					<input class="box" id="password" type="text" name="password" placeholder="password"></br>
-					<button class="button" type="submit" onclick="postSignUp()"><p>sign up</p></button>
-				</div>
-				<header>
-                	<h2><span>sign in</span></h2>
-				</header>
-				<div id="information2">
-					<p>Email Address</p>
-					<input class="box" id="emailin" type="text" name="Email" placeholder="email address"></br>
-					<p>Password</p>
-					<input class="box" id="passwordin" type="text" name="Password" placeholder="password"></br>
-					<button class="button" type="submit" onclick="postSignIn()"><p>sign in</p></button>
+						<button class="button" type="submit" onclick="postSignUp()">
+							<p>sign up</p>
+						</button>
 				</div>
 			</section>
 		</div>

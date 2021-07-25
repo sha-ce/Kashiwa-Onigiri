@@ -36,13 +36,6 @@ $(function() {
             $(this).next().slideToggle();
             $('#menuBtn').removeClass('close');
         });
-
-    //click
-    function click() {
-        const heart = document.getElementById('heart');
-        heart.classList.add('onHeart');
-    }
-
     //enter + shift
     let textForm = document.getElementById('coment');
     let outPut = document.getElementById('output');
@@ -63,3 +56,4 @@ $(function() {
         getThread();
     }
 });
+
