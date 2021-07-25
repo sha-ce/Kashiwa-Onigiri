@@ -175,6 +175,11 @@ section h2 span {
     border: none;
     outline: none;
     background: transparent;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    cursor: pointer;
+}
+.heart:focus {
+    outline: none;
 }
 
 .fa-heart {
