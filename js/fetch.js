@@ -91,7 +91,7 @@ function getContent() {
             const data = res;
             let length = data.length;
             for (let i = 0; i < length; i++) {
-                HTMLtext += '<div class="block">\n' + '<div class="block-text">\n' + '<div class="name"><h5>' + data[i]["author"]["name"] + '</h5></div>\n' + '<div class="text">\n' + '<p>' + data[i]["content"] + '</p>\n' + '<button type="button" onclick="heartClick('+i+')" class="heart" id="heart'+i+'"><i class="far fa-heart"></i></button>' + '</div>\n</div>\n</div>';
+                HTMLtext += '<div class="block">\n' + '<div class="block-text">\n' + '<div class="name"><h5>' + data[i]["author"]["name"] + '</h5></div>\n' + '<div class="text">\n' + '<p>' + data[i]["content"] + '</p>\n' + '<a type="button" onclick="heartClick('+i+')" class="heart" id="heart'+i+'"><i class="far fa-heart"></i></a>' + '</div>\n</div>\n</div>';
             }
             document.getElementById('threadscontainer').innerHTML = HTMLtext;
             loader.classList.add('loaded');
@@ -112,7 +112,8 @@ function postSignUp() {
     let userpass = document.getElementById('password').value;
     let userdes = "プロフィールを記入してください";
     if (username == '' || usermail == '' || userpass == '') {
-        return console.log("error: please write your imformation")
+        document.getElementById("signuperror").innerHTML = "error: please write your imformation";
+        return console.log("error: please write your imformation");
     }
 
     text ='<div id="loader" class="sk-fading-circle"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
@@ -147,6 +148,8 @@ function postSignIn() {
     let userinmail = document.getElementById("emailin").value;
     let userinpass = document.getElementById("passwordin").value;
     if (userinmail == "" || userinpass == "") {
+        document.getElementById("signinerror").innerHTML =
+          "error: please write your imformation";
       return console.log("error: please write your imformation");
     }
 
@@ -189,15 +192,16 @@ function signOut() {
 }
 
 function postContent() {
-    let mycoment = document.getElementById('coment').value;
-    if (mycoment == "") {
-        document.getElementById("toukou").innerHTML = 'error: please write a coment';
-        return console.log("error: please wirte a coment");
-    }
     let token = localStorage.getItem("token");
     if (token == "") {
-      document.getElementById("toukou").innerHTML = "error: please sign in";
+      document.getElementById("toukou").innerHTML =
+        '<div class="errorcomment">error: please sign in</div>';
       return console.log("error: please sign in");
+    }
+    let mycoment = document.getElementById('coment').value;
+    if (mycoment == "") {
+        document.getElementById("toukou").innerHTML = '<div class="errorcomment">error: please write a coment</div>';
+        return console.log("error: please wirte a coment");
     }
     text ='<div id="loader" class="sk-fading-circle"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
     document.getElementById("toukou").innerHTML = text;
