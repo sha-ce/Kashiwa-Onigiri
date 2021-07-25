@@ -136,8 +136,14 @@ function postSignUp() {
             return response.json();
         })
         .then(res1 => {
-            console.log(res1);
-            location.href = "./sign.html";
+            console.log(res1['detail']);
+            if(res1['detail'] == 'Already exists user has same email') {
+                document.getElementById('signuperror').innerHTML = 'error: already exists user has same email';
+                document.getElementById("signupbutton").innerHTML =
+                  "<p>sign up</p>";
+                return console.log("already exists user has same email");
+            }
+            //slocation.href = "./sign.html";
         })
         .catch(error => {
             console.log(error);
@@ -205,7 +211,7 @@ function postContent() {
         document.getElementById("comenterror").innerHTML = '<div class="errorcomment">error: please write a coment</div>';
         return console.log("error: please wirte a coment");
     }
-    text ='<div id="loader" class="sk-fading-circle"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
+    text ='<div id="loader" class="sk-fading-circle mediam"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
     document.getElementById("toukou").innerHTML = text;
 
     newthreadKey = localStorage.getItem('thKey');

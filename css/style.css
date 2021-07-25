@@ -352,6 +352,13 @@ section h2 span {
     position: relative;
 }
 
+.mediam {
+    margin: 40px auto;
+    width: 25px;
+    height: 25px;
+    position: relative;
+}
+
 .sk-fading-circle .sk-circle {
     width: 100%;
     height: 100%;
@@ -378,6 +385,18 @@ section h2 span {
     margin: 0 auto;
     width: 5%;
     height: 5%;
+    background-color: #333;
+    border-radius: 100%;
+    -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+    animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+}
+
+.mediam .sk-circle:before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 8%;
+    height: 8%;
     background-color: #333;
     border-radius: 100%;
     -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
@@ -1066,20 +1085,28 @@ section h2 span {
         flex-direction: column;
     }
     .sroundComent {
-        width: 100%;
-        height: 30px;
-        background-color: white;
-        border: solid 0.5px lightgray;
-        padding: 2px 0px 50px 0px;
-        border-radius: 5px / 5px;
+        height: 90px;
+    }
+    .errorcomment {
+        font-size: 100%;
+        font-family: 'Modern Antiqua', 'Noto Sans JP', serif;
     }
     #coment {
-        width: 95%;
-        height: 100%;
+        width: 97%;
+        height: auto;
         background-color: white;
-        padding: 10px 0px 30px 15px;
-        color: black;
-        border: white;
+        border: solid 0.3px lightgray;
+        padding: 10px 0 60px 10px;
+        margin: 0;
+        border-radius: 5px / 5px;
+        box-shadow: 0 1px rgb(160, 160, 160);
+    }
+    #coment::placeholder {
+        text-align: left;
+        vertical-align: top;
+    }
+    #coment:focus {
+        border: solid 0.3px rgb(146, 146, 255);
     }
     .flex {
         width: 100%;
@@ -1087,7 +1114,7 @@ section h2 span {
     .underComment {
         color: lightgray;
         overflow-wrap: break-word;
-        right: 0%;
+        text-align: right;
     }
     #threadsbox {
         padding: 0px 30px 20px 25px;
@@ -1133,6 +1160,9 @@ section h2 span {
         border-radius: 5px/5px;
         border: solid 1px lightgray;
     }
+    .box:focus {
+        border: solid 0.5px rgb(146, 146, 255);
+    }
     .button {
         margin-bottom: 20px;
         display: block;
@@ -1144,5 +1174,9 @@ section h2 span {
         color: gray;
         text-decoration: none;
         border: solid 0.5px lightgray;
+    }
+    #signinerror, #signuperror {
+        font-size: 50%;
+        font-family: 'Modern Antiqua', 'Noto Sans JP', serif;
     }
 }
