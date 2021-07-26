@@ -167,3 +167,23 @@ function mycontentsearch() {
       });
     return null;
 }
+
+// 1. onchange属性に設定した関数
+function OutputImage(target)
+{
+    // 2. ファイル読み込みクラス
+    var reader = new FileReader();
+
+    // 3. 読み込みクラスの準備が終わった後、画像の情報を設定
+    reader.onload = function () {
+        $sample2 = $("#sample2");
+
+        // 4. Imageクラスを使ってdiv要素に
+        img = new Image();
+        img.src = this.result;
+        // 5. backgroundスタイルを設定
+        $sample2.css("background", "url(" + this.result + ") center center / contain no-repeat");
+    }
+    // 6. 読み込んだ画像ファイルをURLに変換
+    reader.readAsDataURL(target.files[0]);
+}

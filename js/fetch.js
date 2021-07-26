@@ -91,7 +91,27 @@ function getContent() {
             const data = res;
             let length = data.length;
             for (let i = 0; i < length; i++) {
-                HTMLtext += '<div class="block">\n' + '<div class="block-text">\n' + '<div class="name"><h5>' + data[i]["author"]["name"] + '</h5></div>\n' + '<div class="text">\n' + '<p>' + data[i]["content"] + '</p>\n' + '<a type="button" onclick="heartClick('+i+')" class="heart" id="heart'+i+'"><i class="far fa-heart"></i></a>' + '</div>\n</div>\n</div>';
+                HTMLtext +=
+                  '<div class="block">\n' +
+                  '<div class="block-text">\n' +
+                  '<div class="name"><h5>' +
+                  data[i]["author"]["name"] +
+                  "</h5></div>\n" +
+                  '<div class="text">\n' +
+                  "<p>" +
+                  data[i]["content"] +
+                  "</p>\n" +
+                  '<a type="button" onclick="heartClick(' +
+                  i +
+                  ')" class="heart" id="heart' +
+                  i +
+                  '"><i class="far fa-heart"></i></a>' +
+                  '<a type="button" onclick="trash(' +
+                  i +
+                  ')" class="trash" id="trash' +
+                  i +
+                  '"><i class="fas fa-times"></i></a>' +
+                  "</div>\n</div>\n</div>";
             }
             document.getElementById('threadscontainer').innerHTML = HTMLtext;
             loader.classList.add('loaded');
@@ -104,6 +124,39 @@ function getContent() {
         .catch(error => {
             console.log(error);
         });
+}
+function trash(n) {
+    text =
+      '<div id="loader" class="sk-fading-circle small"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
+    document.getElementById("trash"+n).innerHTML = text;
+
+    newthreadKey = localStorage.getItem("thKey");
+    fetch("https://t9f823.deta.dev/api/v1/threads/" + newthreadKey + "/posts?limit=999&page=1")
+      .then((response) => {
+        return response.json();
+      })
+      .then((res) => {
+        fetch("https://t9f823.deta.dev/api/v1/posts/" + res[n]["key"], {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "jwt-token": localStorage.getItem('token')
+          },
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((res1) => {
+              console.log(res1);
+              location.href='./index.html'
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 }
 
 function postSignUp() {
