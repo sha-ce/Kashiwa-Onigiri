@@ -184,19 +184,52 @@ function postSignIn() {
                 return console.log('error: user not found');
             }
             let jwt = 'Bearer ' + res['jwt'];
+            localStorage.setItem("flag", 1);
             localStorage.setItem('token', jwt);
+            getProfile(jwt);
             console.log(jwt);
-            location.href = "./index.html";
+            //location.href = "./index.html";
         })
         .catch(error => {
             console.log(error);
         });
 }
+function getProfile(jwt) {
+  fetch("https://t9f823.deta.dev/api/v1/users/me", {
+    method: "GET",
+    headers: {
+      'accept': 'application/json',
+      'jwt-token': jwt
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((res) => {
+      console.log(res);
+      localStorage.setItem('userkey', res['key']);
+      localStorage.setItem("useremail", res["email"]);
+      localStorage.setItem("username", res["name"]);
+      localStorage.setItem("userdescription", res["description"]);
+      document.getElementById("signinbutton").innerHTML = "<p>sign in</p>";
+      location.href = './index.html'
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 
 function signOut() {
     localStorage.setItem('token', '');
+    localStorage.setItem('userkey', '');
+    localStorage.setItem("useremail", "");
+    localStorage.setItem("username", "");
+    localStorage.setItem("userdescription", "");
+    localStorage.setItem("flag", 0);
     console.log("deketa!!");
-    document.getElementById('signout').innerHTML = '';
+    document.getElementById('signout').style.display = 'none';
+    document.getElementById('profile').style.display = 'none';
+    location.href = './index.html';
 }
 
 function postContent() {

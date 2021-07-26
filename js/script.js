@@ -51,9 +51,23 @@ $(function() {
 
     //loading
     window.onload = function loading() {
+        if(localStorage.getItem('flag') != 1) {
+            document.getElementById('profile').style.display='none';
+            document.getElementById("signout").style.display = "none";
+            document.getElementById("signinup").innerHTML =
+              '<li><a href="./sign.html">sign in/up</a></li>';
+        } else {
+            document.getElementById("profile").innerHTML =
+              '<li><a href="./profile.html" onclick="profile()">profile</a></li>';
+            document.getElementById("signout").innerHTML =
+              '<li><a href="javascript:signOut();">sign out</a></li>';
+            document.getElementById("signinup").innerHTML =
+              '<li><h2>'+localStorage.getItem("username")+'</h2></li>';
+        }
         const loader = document.getElementById('loader');
         getContent();
         getThread();
+        profile();
     }
 });
 //click
@@ -75,4 +89,81 @@ function aroundchange() {
     console.log(document.getElementById('toukou').innerHTML);
     document.getElementById("toukou").innerHTML = '<div class="sroundComent2"><input class="coment" id="coment" type="text" autocomplete="off" onclick="aroundchange()" placeholder="コメントを投稿する"></div><div class="flex"><div class="underComment"><p>Shift + Enterで送信</p></div></div>';
     return 0;
+}
+
+//profile
+function profile() {
+    key = localStorage.getItem('userkey');
+    yourname = localStorage.getItem('username');
+    youremail = localStorage.getItem('useremail');
+    description = localStorage.getItem('userdescription');
+    console.log({
+        'yourname': yourname,
+        'youremail': youremail,
+        'description': description
+    })
+    document.getElementById("yourname").innerHTML =
+      "<h2>" + yourname + "</h2>";
+    document.getElementById("youremail").innerHTML =
+      "<p>email:&nbsp;&nbsp;&nbsp;&nbsp;" + youremail + "</p>";
+    document.getElementById('description').innerHTML = '<p>'+description+'</p>';
+
+    //getmycontent
+    // threadText = "";
+    // fetch("https://t9f823.deta.dev/api/v1/threads?limit=100&page=1")
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     const threadData = res;
+    //     let threadLength = threadData.length;
+    //     for (let i = 0; i < threadLength; i++) {
+    //         if(mycontentsearch() == threadData[i]['key']) {
+    //             threadText += '<button type="button" onclick="" class="threadsBox"><div class="name">' + threadData[i]['author']['name'] + '</div><div class="threadname">' + threadData[i]['name'] + '</button>';
+    //         }
+    //     }
+    //     document.getElementById("threads").innerHTML = threadText;
+    //     loader.classList.add("loaded");
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+}
+
+//mycontentsearch
+function mycontentsearch() {
+    threadText = "";
+    fetch("https://t9f823.deta.dev/api/v1/threads?limit=100&page=1")
+      .then((response) => {
+        return response.json();
+      })
+      .then((res) => {
+        console.log(res);
+        const threadData = res;
+        let threadLength = threadData.length;
+        for (let i = 0; i < threadLength; i++) {
+          fetch("https://t9f823.deta.dev/api/v1/threads/" + threadData[i]["key"] + "/posts?limit=999&page=1")
+            .then((response) => {
+              return response.json();
+            })
+            .then((res1) => {
+              console.log(res1);
+              const data = res1;
+              let datalength = data.length;
+              for (let j = 0; j < datalength; j++) {
+                if (res1[j]["author_key"] == localStorage.getItem("userkey")) {
+                    return threadData[i]['key'];
+                }
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return null;
 }
