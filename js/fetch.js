@@ -9,7 +9,7 @@ function getThread() {
             const threadData = res;
             let threadLength = threadData.length;
             for (let i = 0; i < threadLength; i++) {
-                threadText += '<button type="button" onclick="getKey('+i+')" class="threadsBox"><div class="name">' + threadData[i]['author']['name'] + '</div><div class="threadname">' + threadData[i]['name'] + '</button>';
+                threadText += '<button type="button" onclick="getKey('+i+')" class="threadsBox"><div class="name">' + threadData[i]['author']['name'] + '</div><div class="threadname">' + threadData[i]['name'] + '</div></button>';
             }
             document.getElementById('threads').innerHTML = threadText;
             loader.classList.add('loaded');
@@ -91,27 +91,46 @@ function getContent() {
             const data = res;
             let length = data.length;
             for (let i = 0; i < length; i++) {
-                HTMLtext +=
-                  '<div class="block">\n' +
-                  '<div class="block-text">\n' +
-                  '<div class="name"><h5>' +
-                  data[i]["author"]["name"] +
-                  "</h5></div>\n" +
-                  '<div class="text">\n' +
-                  "<p>" +
-                  data[i]["content"] +
-                  "</p>\n" +
-                  '<a type="button" onclick="heartClick(' +
-                  i +
-                  ')" class="heart" id="heart' +
-                  i +
-                  '"><i class="far fa-heart"></i></a>' +
-                  '<a type="button" onclick="trash(' +
-                  i +
-                  ')" class="trash" id="trash' +
-                  i +
-                  '"><i class="fas fa-times"></i></a>' +
-                  "</div>\n</div>\n</div>";
+                if(data[i]['author_key'] == localStorage.getItem('userkey')){
+                    HTMLtext +=
+                      '<div class="block">\n' +
+                      '<div class="block-text">\n' +
+                      '<div class="name"><h5>' +
+                      data[i]["author"]["name"] +
+                      "</h5></div>\n" +
+                      '<div class="text">\n' +
+                      "<p>" +
+                      data[i]["content"] +
+                      "</p>\n" +
+                      '<a type="button" onclick="heartClick(' +
+                      i +
+                      ')" class="heart" id="heart' +
+                      i +
+                      '"><i class="far fa-heart"></i></a>' +
+                      '<a type="button" onclick="trash(' +
+                      i +
+                      ')" class="trash" id="trash' +
+                      i +
+                      '"><i class="fas fa-times"></i></a>' +
+                      "</div>\n</div>\n</div>";
+                } else {
+                    HTMLtext +=
+                      '<div class="block">\n' +
+                      '<div class="block-text">\n' +
+                      '<div class="name"><h5>' +
+                      data[i]["author"]["name"] +
+                      "</h5></div>\n" +
+                      '<div class="text">\n' +
+                      "<p>" +
+                      data[i]["content"] +
+                      "</p>\n" +
+                      '<a type="button" onclick="heartClick(' +
+                      i +
+                      ')" class="heart" id="heart' +
+                      i +
+                      '"><i class="far fa-heart"></i></a>' +
+                      "</div>\n</div>\n</div>";
+                }
             }
             document.getElementById('threadscontainer').innerHTML = HTMLtext;
             loader.classList.add('loaded');

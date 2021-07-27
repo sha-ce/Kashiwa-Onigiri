@@ -109,64 +109,117 @@ function profile() {
     document.getElementById('description').innerHTML = '<p>'+description+'</p>';
 
     //getmycontent
-    // threadText = "";
-    // fetch("https://t9f823.deta.dev/api/v1/threads?limit=100&page=1")
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //     const threadData = res;
-    //     let threadLength = threadData.length;
-    //     for (let i = 0; i < threadLength; i++) {
-    //         if(mycontentsearch() == threadData[i]['key']) {
-    //             threadText += '<button type="button" onclick="" class="threadsBox"><div class="name">' + threadData[i]['author']['name'] + '</div><div class="threadname">' + threadData[i]['name'] + '</button>';
-    //         }
-    //     }
-    //     document.getElementById("threads").innerHTML = threadText;
-    //     loader.classList.add("loaded");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-}
-
-//mycontentsearch
-function mycontentsearch() {
-    threadText = "";
+    yourthreadText = "";
     fetch("https://t9f823.deta.dev/api/v1/threads?limit=100&page=1")
       .then((response) => {
-        return response.json();
+      return response.json();
       })
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         const threadData = res;
         let threadLength = threadData.length;
-        for (let i = 0; i < threadLength; i++) {
-          fetch("https://t9f823.deta.dev/api/v1/threads/" + threadData[i]["key"] + "/posts?limit=999&page=1")
-            .then((response) => {
-              return response.json();
-            })
-            .then((res1) => {
-              console.log(res1);
-              const data = res1;
-              let datalength = data.length;
-              for (let j = 0; j < datalength; j++) {
-                if (res1[j]["author_key"] == localStorage.getItem("userkey")) {
-                    return threadData[i]['key'];
+					for (let i = 0; i < threadLength; i++) {
+						fetch("https://t9f823.deta.dev/api/v1/threads/" + threadData[i]['key'] + "/posts?limit=999&page=1")
+							.then((response1) => {
+								return response1.json();
+							})
+							.then((res1) => {
+								//console.log(res1);
+								const data = res1;
+								let dataLength = data.length;
+								for(j = 0; j < dataLength; j++) {
+									if(dataLength != undefined) {
+										if(data[j]['author_key'] == localStorage.getItem('userkey')) {
+											yourthreadText +=
+                        '<button type="button" onclick="getmycontent(' +
+                        i +
+                        ')" class="threadsBox"><div class="name">' +
+                        threadData[i]["author"]["name"] +
+                        '</div><div class="threadname">' +
+                        threadData[i]["name"] +
+                        "</div></button>";
+											break;
+										}
+									}
+								}
+								if (i == threadLength - 1) {
+                  loader.classList.add("loaded");
                 }
-              }
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }
+								document.getElementById("yourthreadscontainer").innerHTML = yourthreadText;
+							})
+							.catch((error1) => {
+								console.log(error1);
+							});
+					}
       })
       .catch((error) => {
-        console.log(error);
+      console.log(error);
       });
-    return null;
 }
+//getmycontent
+function getmycontent(n) {
+	text =
+    '<div id="loader" class="sk-fading-circle mediam"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div>';
+  document.getElementById("yourcontentcontainer").innerHTML = text;
+	let mycontenttext = "";
+	fetch("https://t9f823.deta.dev/api/v1/threads?limit=100&page=1")
+    .then((response) => {
+      return response.json();
+    })
+    .then((res) => {
+      //console.log(res);
+      const threadData = res;
+      let threadLength = threadData.length;
+      for (let j = 0; j < threadLength; j++) {
+				if(j == n) {
+					fetch("https://t9f823.deta.dev/api/v1/threads/" + threadData[j]["key"] + "/posts?limit=999&page=1")
+						.then((response1) => {
+							return response1.json();
+						})
+						.then((res1) => {
+							//console.log(res1);
+							const data = res1;
+							let length = data.length;
+							for (let i = 0; i < length; i++) {
+								if (data[i]["author_key"] == localStorage.getItem("userkey")) {
+									mycontenttext +=
+										'<div class="block">\n' +
+										'<div class="block-text">\n' +
+										'<div class="name"><h5>' +
+										data[i]["author"]["name"] +
+										"</h5></div>\n" +
+										'<div class="text">\n' +
+										"<p>" +
+										data[i]["content"] +
+										"</p>\n" +
+										'<a type="button" onclick="heartClick(' +
+										i +
+										')" class="heart" id="heart' +
+										i +
+										'"><i class="far fa-heart"></i></a>' +
+										'<a type="button" onclick="trash(' +
+										i +
+										')" class="trash" id="trash' +
+										i +
+										'"><i class="fas fa-times"></i></a>' +
+										"</div>\n</div></div>";
+								}
+							}
+							document.getElementById("yourcontentcontainer").innerHTML = mycontenttext;
+							document.getElementById("yourthreadname").innerHTML =
+                '<p>"' + threadData[n]['name'] + '"</p>';
+						})
+						.catch((error1) => {
+							console.log(error1);
+						});
+				}
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
 
 // 1. onchange属性に設定した関数
 function OutputImage(target)
