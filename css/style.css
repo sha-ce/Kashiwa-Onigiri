@@ -1117,16 +1117,16 @@ section h2 span {
         top: -10px;
         z-index: 100;
     }
-    .panel ul #signinup li {
+    .panel ul #signinup li h2{
         text-align: center;
         padding: 10px 0;
         font-size: 120%;
-        background-color: rgb(225, 225, 255);
+        background: linear-gradient(white, rgb(225, 225, 255));
         color: black;
-        opacity: 0.4;
+        opacity: 0.8;
         cursor: pointer;
     }
-    .panel ul #signinup li:hover {
+    .panel ul #signinup li h2:hover {
         opacity: 0.9;
         transition: 0.2s;
     }
