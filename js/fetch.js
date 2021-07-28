@@ -187,7 +187,7 @@ function postSignUp() {
     let username = document.getElementById('name').value;
     let usermail = document.getElementById('email').value;
     let userpass = document.getElementById('password').value;
-    let userdes = "プロフィールを記入してください";
+    let userdes = "mydescription";
     if (username == '' || usermail == '' || userpass == '') {
         document.getElementById("signuperror").innerHTML = "error: please write your imformation";
         return console.log("error: please write your imformation");
