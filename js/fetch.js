@@ -167,7 +167,12 @@ function trash(n) {
           })
           .then((res1) => {
               console.log(res1);
-              location.href='./index.html'
+              if(location.pathname.match('profile.html')){
+                getmycontenttrash();
+              } else if(location.pathname.match('index.html')) {
+                location.reload();
+              }
+              //location.reload();
           })
           .catch((error) => {
             console.log(error);
@@ -208,14 +213,14 @@ function postSignUp() {
             return response.json();
         })
         .then(res1 => {
-            console.log(res1['detail']);
+            console.log(res1);
             if(res1['detail'] == 'Already exists user has same email') {
                 document.getElementById('signuperror').innerHTML = 'error: already exists user has same email';
                 document.getElementById("signupbutton").innerHTML =
                   "<p>sign up</p>";
                 return console.log("already exists user has same email");
             }
-            //slocation.href = "./sign.html";
+            location.href = "./sign.html";
         })
         .catch(error => {
             console.log(error);
