@@ -70,6 +70,10 @@ a:active, a:focus, input:active, input:focus {
     outline: 0;
 }
 
+html::-webkit-scrollbar {
+    display: none;
+}
+
 /* ヘッダー
 ------------------------------------------------------------*/
 
@@ -805,6 +809,13 @@ section h2 span {
     .panel {
         display: block !important;
     }
+    .panel ul #signinup li h2 {
+        padding: 10px 0;
+        font-size: 1.2rem;
+    }
+    .panel ul #signinup li h2:hover {
+        text-shadow: 0 0.5px gray;
+    }
     #sidebar h1 {
         padding: 30px 0;
     }
@@ -1103,6 +1114,11 @@ section h2 span {
         left: 0;
         top: -10px;
         z-index: 100;
+    }
+    .panel ul #signinup li {
+        text-align: center;
+        margin: 10px auto;
+        font-size: 120%;
     }
     #mainnav {
         position: absolute;

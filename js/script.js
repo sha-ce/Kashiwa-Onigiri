@@ -105,7 +105,7 @@ function profile() {
     document.getElementById("yourname").innerHTML =
       "<h2>" + yourname + "</h2>";
     document.getElementById("youremail").innerHTML =
-      "<p>email:&nbsp;&nbsp;&nbsp;&nbsp;" + youremail + "</p>";
+      "<p>" + youremail + "</p>";
     document.getElementById('description').innerHTML = '<p>'+description+'</p>';
 
     //getmycontent
